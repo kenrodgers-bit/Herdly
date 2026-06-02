@@ -1,0 +1,10 @@
+node_modules/
+dist/
+dist-electron/
+release/
+output/
+.vite-server*.log
+*.local
+*.tsbuildinfo
+herdly.sqlite
+herdly.sqlite-*

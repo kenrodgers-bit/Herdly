@@ -1,0 +1,76 @@
+{
+  "name": "herdly",
+  "version": "1.0.0",
+  "description": "Offline desktop farm management for single-admin farms.",
+  "main": "dist-electron/main.js",
+  "private": true,
+  "author": "Herdly",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build:electron": "tsc -p electron/tsconfig.json",
+    "dev": "npm run build:electron && concurrently -k \"vite --host 0.0.0.0\" \"wait-on tcp:5173 && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .\"",
+    "dev:web": "vite --host 0.0.0.0",
+    "build": "tsc && vite build && tsc -p electron/tsconfig.json",
+    "dist": "npm run build && electron-builder --win nsis",
+    "rebuild": "cd node_modules/better-sqlite3 && prebuild-install --runtime=electron --target=38.8.2",
+    "postinstall": "npm run rebuild"
+  },
+  "dependencies": {
+    "better-sqlite3": "12.9.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.2.0",
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "electron": "38.8.2",
+    "electron-builder": "^25.1.8",
+    "electron-rebuild": "^3.2.9",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.13.3",
+    "typescript": "^5.7.2",
+    "vite": "^7.2.4",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.herdly.app",
+    "productName": "Herdly",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**",
+      "dist-electron/**",
+      "package.json",
+      "node_modules/better-sqlite3/**",
+      "node_modules/bindings/**",
+      "node_modules/file-uri-to-path/**"
+    ],
+    "artifactName": "HerdlySetup.${ext}",
+    "npmRebuild": false,
+    "asarUnpack": [
+      "node_modules/better-sqlite3/build/Release/*.node"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "public/icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Herdly",
+      "installerIcon": "public/icons/icon.ico",
+      "uninstallerIcon": "public/icons/icon.ico",
+      "installerHeaderIcon": "public/icons/icon.ico",
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}
