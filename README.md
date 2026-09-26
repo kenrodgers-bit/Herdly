@@ -1,63 +1,63 @@
-# Herdly
+<p align="center">
+  <img src="assets/herdly-logo.png" alt="Herdly — Manage smart. Grow better." width="480" />
+</p>
 
-Herdly is an offline, single-admin farm management desktop application for livestock and poultry farms. It runs with Electron, React, TypeScript, and embedded SQLite, so no external database or internet connection is required after installation.
+# Herdly by RG Dev
 
-## Quick Start
+Herdly is farm management software for Kenyan livestock farmers. It runs on your Windows PC and works **completely offline**: no internet, no online account and no monthly data costs. Your farm records stay on your own computer.
 
-```bash
-npm install
-npm run dev
+This page is where Herdly is published. **Download the latest version from [Releases](https://github.com/kenrodgers-bit/Herdly/releases/latest).**
+
+> The first public release is being prepared. This page will link to it as soon as it is available.
+
+## Which file do I download?
+
+| File                           | Use it when                                                                                   |
+| ------------------------------ | --------------------------------------------------------------------------------------------- |
+| `HerdlySetup-<version>.exe`    | **Recommended.** Installs Herdly with a desktop and Start menu shortcut.                      |
+| `Herdly-<version>-portable.exe` | You can't install software on the PC, or you want to run Herdly from a flash drive.           |
+
+Your farm data is kept in the same place for both, so you can switch between them.
+
+## System requirements
+
+- Windows 10 or Windows 11, 64-bit
+- 4 GB RAM or more
+- About 400 MB of free disk space, plus room for your records and backups
+- No internet connection needed
+
+## Installing
+
+1. Download `HerdlySetup-<version>.exe`.
+2. Double-click it. If Windows shows **"Windows protected your PC"**, click **More info**, then **Run anyway**. This appears because the installer is not yet code-signed.
+3. Follow the steps. Herdly installs for your Windows user only, so no administrator password is needed.
+
+## Updating
+
+- **With internet:** Herdly checks quietly for a new version a little after it starts. It never downloads an update without asking you first, so your data bundle is safe.
+- **Without internet:** get the newer `HerdlySetup-<version>.exe` on a flash drive and run it. It installs over the old version.
+
+Your farm records are **kept** when you update, reinstall or uninstall Herdly.
+
+## Your data and backups
+
+Herdly stores everything in this folder on your PC:
+
+```
+%APPDATA%\Herdly
 ```
 
-## Browser-Only Preview
+(Paste that into the address bar of File Explorer to open it.)
 
-```bash
-npm run dev:web
-```
+- `herdly.db` holds your farm records.
+- `backups\` holds a copy taken automatically each day you open Herdly, plus a copy before every update that changes how data is stored.
 
-When previewed in a browser, Herdly uses localStorage as a safe fallback because Electron's `window.herdly` SQLite bridge is not available.
+**Moving to a new computer:** close Herdly and copy the whole `Herdly` folder to a flash drive. On the new PC, paste it into `%APPDATA%`, then install and open Herdly.
 
-## Build Windows Installer
+## Support
 
-```bash
-npm run dist
-```
+Contact RG Dev for help. If Herdly shows an error, please include the file `logs\main.log` from the data folder above.
 
-The NSIS setup wizard is written to `release/HerdlySetup.exe`. Copy that single file to a USB flash drive and run it on a Windows PC; the target machine does not need Node.js, npm, Visual Studio, or any manual database setup.
+---
 
-## better-sqlite3 Native Module Fix
-
-If Electron reports a native module mismatch for `better-sqlite3`, rebuild it:
-
-```bash
-npm run rebuild
-```
-
-The project is pinned to an Electron and `better-sqlite3` pairing that has a Windows x64 prebuilt SQLite binary, so Visual Studio Build Tools are not required for the normal installer build.
-
-## Data Storage
-
-In the packaged desktop app, Herdly stores data in Electron's OS `userData` folder as `herdly.sqlite`. No external database server is needed.
-
-## Backup
-
-Open Settings, choose Export Backup, and save the JSON backup to a flash drive or another safe location.
-
-## Restore
-
-Open Settings, choose Import Backup, and select a Herdly JSON backup file. The app clears the current tables and restores the imported records.
-
-## Adding a New Species Later
-
-Add the species plugin entry in `src/data/species.ts`, then add the corresponding adaptive logic in `src/utils/reportHelpers.ts`. Screens, selectors, reports, forms, and charts derive their behavior from those two files.
-
-## Recommended Next Upgrades
-
-- Animal photo uploads with image paths stored in the animals table
-- CSV / Excel export of any table
-- SMS or WhatsApp low-stock alerts through Africa's Talking API
-- Kiswahili language toggle
-- Automatic vaccination reminder calendar with due-date alerts
-- Weight tracking charts and feed conversion ratios for beef and pigs
-- Offline-first mobile companion app for staff data entry
-- Client licensing system for selling Herdly to multiple farms
+Herdly is proprietary software. © 2026 RG Dev. All rights reserved.
