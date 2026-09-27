@@ -8,7 +8,7 @@ Herdly is farm management software for Kenyan livestock farmers. It runs on your
 
 This page is where Herdly is published. **Download the latest version from [Releases](https://github.com/kenrodgers-bit/Herdly/releases/latest).**
 
-> The first public release is being prepared. This page will link to it as soon as it is available.
+**Latest version: 1.0.0** — [HerdlySetup-1.0.0.exe](https://github.com/kenrodgers-bit/Herdly/releases/latest/download/HerdlySetup-1.0.0.exe) · [portable](https://github.com/kenrodgers-bit/Herdly/releases/latest/download/Herdly-1.0.0-portable.exe)
 
 ## Which file do I download?
 
